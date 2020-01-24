@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'XBNiloofar';
+  src: url('XBNiloofar.eot');
+  src: url('XBNiloofar.eot?#iefix') format('embedded-opentype'),
+       url('XBNiloofar.svg#XBNiloofar') format('svg'),
+       url('XBNiloofar.ttf') format('truetype'),
+       url('XBNiloofar.woff') format('woff'),
+       url('XBNiloofar.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

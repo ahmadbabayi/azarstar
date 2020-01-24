@@ -1,0 +1,38 @@
+\documentclass[10pt,twoside]{book} % 10pt font size and two-sided margins
+\usepackage[paperwidth=170mm, paperheight=240mm, top=2cm,bottom=2cm,left=2.5cm,right=1.5cm,columnsep=20pt]{geometry}
+\usepackage{times}
+\usepackage{fontspec}
+\usepackage{microtype} % Improves spacing
+\usepackage{multicol} % Required for splitting text into multiple columns
+\usepackage{fancyhdr} % Required for modifying headers and footers
+\usepackage{tcolorbox}
+
+\fancyhead[L]{\textsf{\rightmark}} % Top left header
+\fancyhead[R]{\textsf{\leftmark}} % Top right header
+\renewcommand{\headrulewidth}{1.4pt} % Rule under the header
+\fancyhead[C]{\textbf{\textsf{\niloofar\thepage}}} % Bottom center footer
+\fancyfoot[C]{\textbf{\textsf{}}} % Bottom center footer
+\renewcommand{\footrulewidth}{1.4pt} % Rule under the footer
+\pagestyle{fancy} % Use the custom headers and footers throughout the document
+
+\newcommand{\entry}[3]{\noindent\LR{#1}\markboth{#1}{#1}\ {#2}\ \RL{\niloofar#3\hfill}} % Defines the command to print each word on the page, \markboth{}{} prints the first word on the page in the top left header and the last word in the top right
+
+\usepackage{xepersian}
+
+\defpersianfont\niloofar[Scale=1]{XB Niloofar}
+
+\defpersianfont\dolus[Scale=1]{Doulos SIL}
+
+\settextfont{XB Niloofar}
+
+\setlatintextfont{Times New Roman}
+
+\renewcommand{\baselinestretch}{1.2}
+
+\setLTR
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\setRTL
