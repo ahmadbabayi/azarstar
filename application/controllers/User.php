@@ -164,7 +164,7 @@ class User extends CI_Controller {
                 $_SESSION['is_admin'] = (bool) $user->is_admin;
 
                 // user login ok
-                redirect('member/', 'location');
+                redirect('', 'location');
             } else {
 
                 // login failed

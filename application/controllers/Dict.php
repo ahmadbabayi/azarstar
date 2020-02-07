@@ -48,6 +48,9 @@ class Dict extends CI_Controller {
 
         $data['pagination'] = $this->pagination->create_links();
         $this->load->view('header');
+        if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) {
+            $this->load->view('dict/member/dict', $data);
+        }
         $this->load->view('dict/show', $data);
         $this->load->view('footer');
     }
@@ -116,6 +119,9 @@ class Dict extends CI_Controller {
 
 
         $this->load->view('header');
+        if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) {
+            $this->load->view('dict/member/entry_edit', $data);
+        }
         $this->load->view('dict/word', $data);
         $this->load->view('footer');
     }

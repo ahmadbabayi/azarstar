@@ -73,7 +73,7 @@ class Member extends CI_Controller {
         } else {
             $this->member_model->update_dict();
             //redirect('admin/test1/', 'location');
-            redirect('member/dictionary/' . $id, 'location');
+            redirect('dict/show/' . $id, 'location');
         }
     }
 
@@ -165,7 +165,7 @@ class Member extends CI_Controller {
         }
         $this->db->query('delete from dict_words where id=' . $id);
         $this->db->query('delete from dict_bodies where id=' . $id);
-        redirect('member/dictionary/'.$dict_id, 'location');
+        redirect('dict/show/'.$dict_id, 'location');
     }
 
     public function latex() {

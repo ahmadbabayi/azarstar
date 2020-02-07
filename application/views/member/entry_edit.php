@@ -1,5 +1,5 @@
 <div class="w3-container">
-    <?php echo anchor('member/dictionary/' . $dict_id, 'Back', 'class="w3-button w3-section w3-teal w3-ripple"') ?>
+    <?php echo anchor('dict/word/' . $row['id'], 'Back', 'class="w3-button w3-section w3-teal w3-ripple"') ?>
     <?php echo anchor('member/entryremove/' . $dict_id . '/' . $row['id'], 'Delete entry', 'class="w3-button w3-section w3-teal w3-ripple" onclick="return confirm(\'Are you sure you want to delete this entry?\');"') ?>
     <?php echo anchor('member/entry/' . $dict_id, 'Add new entry', 'class="w3-button w3-section w3-teal w3-ripple"') ?>
     <header class="w3-container w3-border w3-dark-grey w3-text-white">
