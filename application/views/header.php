@@ -16,11 +16,6 @@
                 <a id="nav2" href="<?= base_url('downloads') ?>" class="w3-bar-item w3-button  w3-mobile">Downloads</a>
                 <a id="nav3" href="<?= base_url('tools') ?>" class="w3-bar-item w3-button  w3-mobile">Tools</a>
                 <?php if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) : ?><a href="<?= base_url('user/logout') ?>" class="w3-bar-item w3-button  w3-mobile">Logout</a>
-                <?php else : ?><a id="nav4" href="<?php echo base_url('user/login'); ?>" class="w3-bar-item w3-button  w3-mobile">Login</a> <?php endif;
-                
-                        if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) {
-                            echo anchor('member', 'Member area','class="w3-bar-item w3-button  w3-mobile"');
-                        }
-                        ?>
+                <?php else : ?><a id="nav4" href="<?php echo base_url('user/login'); ?>" class="w3-bar-item w3-button  w3-mobile">Login</a> <?php endif; ?>
             </div> 
         </div>
