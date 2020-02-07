@@ -3,7 +3,7 @@ echo $error;
 ?>
 <div class="w3-container">
 <div class="w3-container">
-    <?php echo anchor('', 'Back', 'class="w3-button w3-section w3-teal w3-ripple"') ?>
+    <?php echo anchor('member', 'Back', 'class="w3-button w3-section w3-teal w3-ripple"') ?>
 </div>
 <header class="w3-container w3-border w3-dark-grey w3-text-white">
   <h1>Restore database</h1>

@@ -15,6 +15,9 @@ class Welcome extends CI_Controller {
     public function index() {
         $data['items'] = $this->main_model->show_dicts();
         $this->load->view('header');
+        if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) {
+            $this->load->view('dict/member/main');
+        }
         $this->load->view('welcome_message',$data);
         $this->load->view('footer');
     }

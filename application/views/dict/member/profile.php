@@ -1,5 +1,5 @@
 <div class="w3-container">
-    <?php echo anchor('', 'Back', 'class="w3-button w3-section w3-teal w3-ripple"') ?>
+    <?php echo anchor('member', 'Back', 'class="w3-button w3-section w3-teal w3-ripple"') ?>
     <?php
     echo validation_errors();
     echo form_open('member/profile');

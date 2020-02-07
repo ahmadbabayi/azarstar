@@ -87,7 +87,7 @@ class Member extends CI_Controller {
         } else {
             $this->member_model->insert_dict();
             //redirect('admin/test1/', 'location');
-            redirect('member', 'location');
+            redirect('', 'location');
         }
     }
 
@@ -303,7 +303,7 @@ class Member extends CI_Controller {
                     $this->db->query($statement);
                 }
             }
-            redirect('member', 'location');
+            redirect('', 'location');
         }
     }
 
@@ -320,7 +320,7 @@ class Member extends CI_Controller {
             $this->load->view('footer');
         } else {
             $this->member_model->update_profile();
-            redirect('member/', 'location');
+            redirect('', 'location');
         }
     }
 
