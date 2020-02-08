@@ -1,5 +1,7 @@
 <div class="w3-container">
-    <h1><?php echo $row['title']; ?></h1>
+    <header class="w3-container w3-border w3-dark-grey w3-text-white">
+  <h1><?php echo $row['title']; ?></h1>
+</header>
     <div class="w3-container w3-display-topright">
         <?php
         echo form_open('dict/search/'.$row['id']);
