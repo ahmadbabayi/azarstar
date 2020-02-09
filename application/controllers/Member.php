@@ -98,7 +98,7 @@ class Member extends CI_Controller {
             $dict_id = $this->uri->segment(3, 0);
         }
         if ($dict_id == '') {
-            redirect('member', 'location');
+            redirect('', 'location');
         }
         $data['dict'] = $this->member_model->show_dict($dict_id);
         $data['dict_id'] = $dict_id;
