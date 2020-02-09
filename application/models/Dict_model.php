@@ -65,7 +65,7 @@ class Dict_model extends CI_Model {
     }
 
     public function show_word($id) {
-        $this->db->select('*');
+        $this->db->select('dict_names.title,dict_names.direction,dict_bodies.body,words.word,dict_words.*');
         $this->db->from('dict_words');
         $this->db->join('words', 'words.id = dict_words.word_id', 'left');
         $this->db->join('dict_bodies', 'dict_bodies.id = dict_words.id', 'left');
