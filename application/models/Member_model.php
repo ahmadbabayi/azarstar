@@ -124,9 +124,7 @@ class Member_model extends CI_Model {
     }
 
     public function search_word($word) {
-        $this->db->select('id');
-        $this->db->where('word', $word);
-        $query = $this->db->get('words');
+        $query = $this->db->query('SELECT id FROM words WHERE BINARY word = "'.$word.'"');
         $row = $query->row();
         if ($query->num_rows()>0) {
             return $row->id;
