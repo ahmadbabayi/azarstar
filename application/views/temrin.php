@@ -6,6 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <li><?php echo anchor('temrin/emptymyword', 'empty mywords') ?></li>
     <li><?php echo anchor('temrin/removewords', 'remove words') ?></li>
     <li><?php echo anchor('temrin/words', 'words') ?></li>
+    <li><?php echo anchor('temrin/words2sql', 'words2sql') ?></li>
     <li><?php echo anchor('temrin/convert', 'convert') ?></li>
     <li><?php echo anchor('temrin/english', 'english') ?></li>
     <li><?php echo anchor('temrin/phonetic', 'phonetic') ?></li>

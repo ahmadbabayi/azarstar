@@ -59,6 +59,9 @@ class Member extends CI_Controller {
 
     public function dict_edit() {
         $id = intval($this->uri->segment(3, 0));
+        if ($id == '') {
+            redirect('', 'location');
+        }
         $data['row'] = $this->member_model->show_dict($id);
         $data['row2'] = $this->member_model->show_dict_preamble($id);
 
@@ -173,6 +176,9 @@ class Member extends CI_Controller {
         $this->load->helper('file');
         $this->load->helper('latex_helper');
         $id = intval($this->uri->segment(3, 0));
+        if ($id == '') {
+            redirect('member', 'location');
+        }
         $row = $this->member_model->show_dict($id);
         $row2 = $this->member_model->show_dict_preamble($id);
         $identity = $row2['identity'];
@@ -264,11 +270,11 @@ class Member extends CI_Controller {
     public function backup() {
         $this->load->dbutil();
         $prefs = array(
-            'ignore' => array(), // List of tables to omit from the backup
+            'ignore' => array('users'), // List of tables to omit from the backup
             'format' => 'txt', // gzip, zip, txt
             'filename' => 'azarstarbackup.sql', // File name - NEEDED ONLY WITH ZIP FILES
             'add_drop' => TRUE, // Whether to add DROP TABLE statements to backup file
-            'add_insert' => TRUE, // Whether to add INSERT data to backup file
+            'add_insert' => true, // Whether to add INSERT data to backup file
             'newline' => "\n"                         // Newline character used in backup file
         );
         $backup = $this->dbutil->backup($prefs);
