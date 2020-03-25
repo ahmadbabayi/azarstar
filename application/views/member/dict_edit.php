@@ -13,6 +13,7 @@
             echo $errormatn;
         }
         ?>
+        <input type="submit" class="w3-button w3-section w3-teal w3-ripple" value="save">
         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
         <p><label>Dictionary name</label>
             <input class="w3-input w3-border" style="text-align:left; direction: <?php echo substr($row['direction'], 4); ?>" name="title" type="text" value="<?php echo $row['title']; ?>" required>
@@ -82,8 +83,7 @@
             </script>
         </p>
 
-        <p>
-            <input type="submit" class="w3-button w3-section w3-teal w3-ripple" value="save"></p>
+        <input type="submit" class="w3-button w3-section w3-teal w3-ripple" value="save">
 
         </form>
     </div>
