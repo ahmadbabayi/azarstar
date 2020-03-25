@@ -31,6 +31,29 @@ class Dict extends CI_Controller {
         $this->load->view('dict/main', $data);
         $this->load->view('footer');
     }
+    
+    public function luget() {
+        $id = intval($this->uri->segment(4, 0));
+        $data['row'] = $this->dict_model->show_dict($id);
+
+        $start = $this->uri->segment(5, 0);
+        $limit = $this->config->item('per_page');
+        $data['items'] = $this->dict_model->fetch_records($id, '', $limit, $start);
+
+        $config['base_url'] = site_url() . '/dict/luget/'.$this->uri->segment(3, 0).'/'. $id;
+        $config['total_rows'] = $this->dict_model->record_count($id, '');
+        $config['per_page'] = $this->config->item('per_page');
+        $config['attributes'] = array('class' => 'w3-button');
+        $this->pagination->initialize($config);
+
+        $data['pagination'] = $this->pagination->create_links();
+        $this->load->view('header');
+        if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) {
+            $this->load->view('dict/member/dict', $data);
+        }
+        $this->load->view('dict/show', $data);
+        $this->load->view('footer');
+    }
 
     public function show() {
         $id = intval($this->uri->segment(3, 0));
@@ -110,6 +133,22 @@ class Dict extends CI_Controller {
             }
         }
 
+        $this->load->view('footer');
+    }
+    
+    public function soz() {
+        $id = intval($this->uri->segment(3, 0));
+        $row = $this->dict_model->show_word($id);
+        $data['row'] = $row;
+        $data['next'] = $this->dict_model->show_next_word($id, $row['dict_id']);
+        $data['pre'] = $this->dict_model->show_pre_word($id, $row['dict_id']);
+
+
+        $this->load->view('header');
+        if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) {
+            $this->load->view('dict/member/entry_edit', $data);
+        }
+        $this->load->view('dict/word', $data);
         $this->load->view('footer');
     }
 

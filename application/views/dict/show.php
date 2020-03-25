@@ -28,7 +28,7 @@
             <?php
             foreach ($items as $row):
                 ?>
-            <?php echo anchor('dict/word/' . $row['id'], $row['word'], 'class="w3-bar w3-xlarge"');?>
+            <?php echo anchor('dict/soz/'.$row['id'].'/'. $row['word'], $row['word'], 'class="w3-bar w3-xlarge"');?>
             <?php endforeach; ?>
     </div>
     <div class="w3-center">
