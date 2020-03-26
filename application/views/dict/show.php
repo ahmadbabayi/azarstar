@@ -15,7 +15,7 @@
         <?php
         $alphabet = explode(' ', $row['alphabet']);
         foreach ($alphabet as $value) {
-            echo '<a href="' . base_url('/dict/showchar/' . $row['id'] . '/' . $value) . '" class="w3-bar-item w3-button">' . $value . '</a>';
+            echo '<a href="' . base_url('/dict/char/' . $row['id'] . '/' . $value) . '" class="w3-bar-item w3-button">' . $value . '</a>';
         }
         ?>
     </div>

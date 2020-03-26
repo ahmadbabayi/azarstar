@@ -10,6 +10,7 @@ class Welcome extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper('file');
         $this->load->library('form_validation');
+        $this->load->helper('filter_helper');
     }
 
     public function index() {

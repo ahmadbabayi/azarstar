@@ -8,6 +8,7 @@ class Dict extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->library('pagination');
         $this->load->helper('str_helper');
+        $this->load->helper('text');
     }
 
     public function index() {
@@ -102,6 +103,31 @@ class Dict extends CI_Controller {
         $this->load->view('dict/show', $data);
         $this->load->view('footer');
     }
+    
+    public function char() {
+        $id = intval($this->uri->segment(3, 0));
+        $char = $this->uri->segment(4, 0);
+        $char = urldecode($char);
+        $data['row'] = $this->dict_model->show_dict($id);
+
+        $start = $this->uri->segment(5, 0);
+        $limit = $this->config->item('per_page');
+        $data['items'] = $this->dict_model->fetch_records($id, $char, $limit, $start);
+
+        $config['base_url'] = site_url() . '/dict/char/' . $id . '/' . $char;
+        $config['total_rows'] = $this->dict_model->record_count($id, $char);
+        $config['per_page'] = $this->config->item('per_page');
+        $config['attributes'] = array('class' => 'w3-button');
+        $this->pagination->initialize($config);
+
+        $data['pagination'] = $this->pagination->create_links();
+        $this->load->view('header');
+        if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) {
+            $this->load->view('dict/member/dict', $data);
+        }
+        $this->load->view('dict/show', $data);
+        $this->load->view('footer');
+    }
 
     public function search() {
         $this->load->view('header');
@@ -167,5 +193,4 @@ class Dict extends CI_Controller {
         $this->load->view('dict/word', $data);
         $this->load->view('footer');
     }
-
 }

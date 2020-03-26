@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         ?>
         <div class="w3-row">
             <div class="w3-container">
-                <h2 class="w3-text-teal"><?php echo anchor('dict/luget/' . $row['title'].'/'.$row['id'], $row['title'], 'class="w3-btn"') ?></h2>
+                <h2 class="w3-text-teal"><?php echo anchor('dict/luget/' .filter_url($row['title']).'/'.$row['id'], $row['title'], 'class="w3-btn"') ?></h2>
                 <p><?php echo $row['description'] ?></p>
             </div>
         </div>

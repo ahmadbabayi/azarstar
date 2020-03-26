@@ -1,5 +1,5 @@
 <div class="w3-container">
-    <?php echo anchor('dict/show/' . $row['id'], 'Back', 'class="w3-button w3-section w3-teal w3-ripple"') ?>
+    <?php echo anchor('dict/luget/'.$row['title'].'/'. $row['id'], 'Back', 'class="w3-button w3-section w3-teal w3-ripple"') ?>
     <header class="w3-container w3-border">
         <h1><?php echo $row['title']; ?></h1>
     </header>

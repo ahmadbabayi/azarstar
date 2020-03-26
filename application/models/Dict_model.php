@@ -84,7 +84,14 @@ class Dict_model extends CI_Model {
         $this->db->where('dict_words.id >', $id);
         $query = $this->db->get();
         $row = $query->row();
-        return $row->id;
+        $id = $row->id;
+        $this->db->select('words.word,dict_words.id');
+        $this->db->from('dict_words');
+        $this->db->join('words', 'words.id = dict_words.word_id', 'left');
+        $this->db->where('dict_words.dict_id', $dict_id);
+        $this->db->where('dict_words.id', $id);
+        $query = $this->db->get();
+        return $query->row_array();
     }
     
     public function show_pre_word($id,$dict_id) {
@@ -96,7 +103,14 @@ class Dict_model extends CI_Model {
         $this->db->where('dict_words.id <', $id);
         $query = $this->db->get();
         $row = $query->row();
-        return $row->id;
+        $id = $row->id;
+        $this->db->select('words.word,dict_words.id');
+        $this->db->from('dict_words');
+        $this->db->join('words', 'words.id = dict_words.word_id', 'left');
+        $this->db->where('dict_words.dict_id', $dict_id);
+        $this->db->where('dict_words.id', $id);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
     public function show_dict($id) {

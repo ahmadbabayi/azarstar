@@ -6,17 +6,9 @@
         <h1>Edit entry</h1>
     </header>
     <div>
-        <?php
-        if ($pre > 0) {
-            echo anchor('member/entry_edit/' . $dict_id . '/' . $pre, 'Previus word', 'class="w3-button  w3-gray"');
-        }
-        ?>
-        <?php
-        if ($next > 0) {
-            echo anchor('member/entry_edit/' . $dict_id . '/' . $next, 'Next word', 'class="w3-button  w3-gray"');
-        }
-        ?>
-    </div>
+            <?php if ($pre['id']>0) {echo anchor('member/entry_edit/'.$dict_id.'/'.$pre['id'], $pre['word'],'class="w3-button  w3-gray"');} ?> < &nbsp;&nbsp;>
+            <?php if ($next['id']>0) {echo anchor('member/entry_edit/'.$dict_id.'/'.$next['id'], $next['word'],'class="w3-button  w3-gray"');} ?>
+        </div>
     <script src="<?php echo base_url('cssjs/ckeditor/ckeditor.js'); ?>"></script>
     <div class="w3-container w3-margin-top w3-xlarge">
 
