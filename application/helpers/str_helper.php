@@ -93,20 +93,28 @@ function lastconvert($str) {
 ', $str);
     $str = str_replace('%%', '
 ', $str);
+    $str = str_replace('ؤو', 'ؤ', $str);
     $str = str_replace('ووو', 'وو', $str);
     $str = str_replace(' ,', ',', $str);
     $str = str_replace(' .', '.', $str);
     $str = str_replace('( ', '(', $str);
     $str = str_replace(' )', ')', $str);
     $str = str_replace(' ؟', '؟', $str);
+    $str = str_replace('ı', 'I', $str);
     
     return $str;
 }
 
 function firstcharacter($str) {
+    $firstchar = mb_substr($str, 0, 3);
+    $str2 = mb_substr($str, 3);
+    if ($firstchar == 'əsr') {
+        $firstchar = str_replace('əsr', 'عصر', $firstchar);
+    }
+    $str = $firstchar.$str2;
+    
     $firstchar = mb_substr($str, 0, 1);
     $str2 = mb_substr($str, 1);
-
     if ($firstchar == 'a') {
         $firstchar = str_replace('a', 'آ', $firstchar);
     }
@@ -132,7 +140,8 @@ function firstcharacter($str) {
         $firstchar = str_replace('ə', 'ا', $firstchar);
     }
     $str = $firstchar.$str2;
-
+    
+    //perfex
     $lastchar = mb_substr($str, -1);
     $str2 = mb_substr($str, 0,-1);
 
@@ -140,13 +149,53 @@ function firstcharacter($str) {
         $lastchar = str_replace('ə', 'ه', $lastchar);
 
     }
-
     $str = $str2.$lastchar;
+    
+    $lastchar = mb_substr($str, -3);
+    $str2 = mb_substr($str, 0,-3);
+    if ($lastchar == 'əli') {
+        $lastchar = str_replace('əli', 'ه‌لی', $lastchar);
+    }
+    $str = $str2.$lastchar;
+    
+    $lastchar = mb_substr($str, -4);
+    $str2 = mb_substr($str, 0,-4);
+    if ($lastchar == 'ədir') {
+        $lastchar = str_replace('ədir', 'ه‌دیر', $lastchar);
+    }
+    if ($lastchar == 'ənin') {
+        $lastchar = str_replace('ənin', 'ه‌نین', $lastchar);
+    }
+    if ($lastchar == 'ədək') {
+        $lastchar = str_replace('ədək', 'ه‌دک', $lastchar);
+    }
+    if ($lastchar == 'ədən') {
+        $lastchar = str_replace('ədən', 'ه‌دن', $lastchar);
+    }
+    $str = $str2.$lastchar;
+    
+    $lastchar = mb_substr($str, -5);
+    $str2 = mb_substr($str, 0,-5);
+    if ($lastchar == 'ləşir') {
+        $lastchar = str_replace('ləşir', 'له‌شیر', $lastchar);
+    }
+    $str = $str2.$lastchar;
+    
+    $lastchar = mb_substr($str, -6);
+    $str2 = mb_substr($str, 0,-6);
+    if ($lastchar == 'əsinin') {
+        $lastchar = str_replace('əsinin', 'ه‌سینین', $lastchar);
+    }
+    $str = $str2.$lastchar;
+    
     return $str;
 }
 
 function convertableword($str) {
     if (strpos($str, 'w') !== FALSE || strpos($str, 'http') !== FALSE || strpos($str, '[') !== FALSE){
+        return 0;
+    }
+    elseif ($str == 'ı') {
         return 0;
     }
  else {
