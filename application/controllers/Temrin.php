@@ -161,7 +161,11 @@ window.onload = timedRefresh(3000);
 
     public function convert() {
         $this->load->helper('str_helper');
-        $word = $this->temrin_model->fetch_records(2);
+        $dict_id = intval($this->uri->segment(3, 0));
+        if ($dict_id == '') {
+            redirect('temrin', 'location');
+        }
+        $word = $this->temrin_model->fetch_records($dict_id);
         ini_set('max_execution_time', 300);
         foreach ($word as $value) {
             $memo1 = $value['body'];

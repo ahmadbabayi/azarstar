@@ -7,6 +7,7 @@ class Dict extends CI_Controller {
         $this->load->model('dict_model');
         $this->load->library('form_validation');
         $this->load->library('pagination');
+        $this->load->helper('filter_helper');
         $this->load->helper('str_helper');
         $this->load->helper('text');
     }

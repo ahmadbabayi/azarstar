@@ -15,7 +15,7 @@
 \renewcommand{\footrulewidth}{1.4pt} % Rule under the footer
 \pagestyle{fancy} % Use the custom headers and footers throughout the document
 
-\newcommand{\entry}[3]{\noindent\LR{#1}\markboth{#1}{#1}\ {#2}\ \RL{\niloofar#3\hfill}} % Defines the command to print each word on the page, \markboth{}{} prints the first word on the page in the top left header and the last word in the top right
+\newcommand{\entry}[3]{\noindent\LR{\dolus#1}\markboth{#1}{#1}\ {#2}\ \RL{\niloofar#3\hfill}} % Defines the command to print each word on the page, \markboth{}{} prints the first word on the page in the top left header and the last word in the top right
 
 \usepackage{xepersian}
 
