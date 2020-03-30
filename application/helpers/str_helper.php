@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 function to_utf8($string) {
     trim($string);
     $string = str_replace('%C3%A7', 'ç', $string);
-        return $string;
+    return $string;
 }
 
 function strreplace($str) {
@@ -74,17 +74,22 @@ function firstconvert($str) {
     $str = str_replace('»', ' »', $str);
     $str = str_replace('
 ', ' %% ', $str);
-    
+
     return $str;
 }
 
-function firstwordconvert($str,$wordslist) {
+function firstwordconvert($str, $wordslist) {
     foreach ($wordslist as $row) {
-        $str_sub = mb_substr($str, 0, 3);
-        $latin = mb_substr($row['latin'], 0, 3);
+        if (strlen($str) > 4) {
+            $str_sub = mb_substr($str, 0, 4);
+            $latin = mb_substr($row['latin'], 0, 4);
+        } else {
+            $str_sub = $str;
+            $latin = $row['latin'];
+        }
         //if ($str == $row['latin'])
         if ($str_sub == $latin) {
-          $str = str_replace($row['latin'], $row['arab'], $str);  
+            $str = str_replace($row['latin'], $row['arab'], $str);
         }
     }
     return $str;
@@ -111,7 +116,7 @@ function lastconvert($str) {
     $str = str_replace('ı', 'I', $str);
     $str = str_replace('x', 'X', $str);
     $str = str_replace('v', 'V', $str);
-    
+
     return $str;
 }
 
@@ -121,8 +126,8 @@ function firstcharacter($str) {
     if ($firstchar == 'əsr') {
         $firstchar = str_replace('əsr', 'عصر', $firstchar);
     }
-    $str = $firstchar.$str2;
-    
+    $str = $firstchar . $str2;
+
     $firstchar = mb_substr($str, 0, 1);
     $str2 = mb_substr($str, 1);
     if ($firstchar == 'a') {
@@ -149,41 +154,58 @@ function firstcharacter($str) {
     if ($firstchar == 'ə') {
         $firstchar = str_replace('ə', 'ا', $firstchar);
     }
-    $str = $firstchar.$str2;
-    
+    $str = $firstchar . $str2;
+
     //perfex
+    $lastchar = mb_substr($str, -10);
+    $str2 = mb_substr($str, 0, -10);
+    if ($lastchar == 'ələrindəki') {
+        $lastchar = str_replace('ələrindəki', 'ه‌لرینده‌کی', $lastchar);
+    }
+    $str = $str2 . $lastchar;
+    
+    $lastchar = mb_substr($str, -8);
+    $str2 = mb_substr($str, 0, -8);
+    if ($lastchar == 'ələrdəki') {
+        $lastchar = str_replace('ələrdəki', 'ه‌لرده‌کی', $lastchar);
+    }
+    $str = $str2 . $lastchar;
+    
     $lastchar = mb_substr($str, -7);
-    $str2 = mb_substr($str, 0,-7);
+    $str2 = mb_substr($str, 0, -7);
     if ($lastchar == 'əsindən') {
         $lastchar = str_replace('əsindən', 'ه‌سیندن', $lastchar);
     }
     if ($lastchar == 'ədiyini') {
         $lastchar = str_replace('ədiyini', 'ه‌دی‌یینی', $lastchar);
     }
-    $str = $str2.$lastchar;
-    
+    $str = $str2 . $lastchar;
+
     $lastchar = mb_substr($str, -6);
-    $str2 = mb_substr($str, 0,-6);
+    $str2 = mb_substr($str, 0, -6);
     if ($lastchar == 'əsinin') {
         $lastchar = str_replace('əsinin', 'ه‌سینین', $lastchar);
     }
     if ($lastchar == 'əyəcək') {
         $lastchar = str_replace('əyəcək', 'ه‌یه‌جک', $lastchar);
     }
-    $str = $str2.$lastchar;
-    
+    $str = $str2 . $lastchar;
+
     $lastchar = mb_substr($str, -5);
-    $str2 = mb_substr($str, 0,-5);
+    $str2 = mb_substr($str, 0, -5);
     if ($lastchar == 'ləşir') {
         $lastchar = str_replace('ləşir', 'له‌شیر', $lastchar);
     }
     if ($lastchar == 'əsədə') {
         $lastchar = str_replace('əsədə', 'ه‌سه‌ده', $lastchar);
     }
-    $str = $str2.$lastchar;
-    
+    if ($lastchar == 'ələri') {
+        $lastchar = str_replace('ələri', 'ه‌لری', $lastchar);
+    }
+    $str = $str2 . $lastchar;
+
     $lastchar = mb_substr($str, -4);
-    $str2 = mb_substr($str, 0,-4);
+    $str2 = mb_substr($str, 0, -4);
     if ($lastchar == 'ədir') {
         $lastchar = str_replace('ədir', 'ه‌دیر', $lastchar);
     }
@@ -214,10 +236,10 @@ function firstcharacter($str) {
     if ($lastchar == 'dəki') {
         $lastchar = str_replace('dəki', 'ده‌کی', $lastchar);
     }
-    $str = $str2.$lastchar;
-    
+    $str = $str2 . $lastchar;
+
     $lastchar = mb_substr($str, -3);
-    $str2 = mb_substr($str, 0,-3);
+    $str2 = mb_substr($str, 0, -3);
     if ($lastchar == 'əli') {
         $lastchar = str_replace('əli', 'ه‌لی', $lastchar);
     }
@@ -227,29 +249,26 @@ function firstcharacter($str) {
     if ($lastchar == 'mədi') {
         $lastchar = str_replace('mədi', 'مه‌دی', $lastchar);
     }
-    $str = $str2.$lastchar;
-    
+    $str = $str2 . $lastchar;
+
     $lastchar = mb_substr($str, -1);
-    $str2 = mb_substr($str, 0,-1);
+    $str2 = mb_substr($str, 0, -1);
 
     if ($lastchar == 'ə') {
         $lastchar = str_replace('ə', 'ه', $lastchar);
-
     }
-    $str = $str2.$lastchar;
-   
+    $str = $str2 . $lastchar;
+
     return $str;
 }
 
 function convertableword($str) {
-    if (strpos($str, 'w') !== FALSE || strpos($str, 'http') !== FALSE || strpos($str, '[') !== FALSE){
+    if (strpos($str, 'w') !== FALSE || strpos($str, 'http') !== FALSE || strpos($str, '[') !== FALSE) {
         return 0;
-    }
-    elseif ($str == 'ı' || $str == 'ıı' || $str == 'ııı' || $str == 'ıv' || $str == 'v' || $str == 'vı' || $str == 'vıı' || $str == 'ııı' || $str == 'vııı' || $str == 'ıx' || $str == 'x' || $str == 'xı' || $str == 'xıı' || $str == 'xııı' || $str == 'xıv' || $str == 'xv' || $str == 'xvı' || $str == 'xvıı' || $str == 'xııı' || $str == 'xıx' || $str == 'xx') {
+    } elseif ($str == 'ı' || $str == 'ıı' || $str == 'ııı' || $str == 'ıv' || $str == 'v' || $str == 'vı' || $str == 'vıı' || $str == 'ııı' || $str == 'vııı' || $str == 'ıx' || $str == 'x' || $str == 'xı' || $str == 'xıı' || $str == 'xııı' || $str == 'xıv' || $str == 'xv' || $str == 'xvı' || $str == 'xvıı' || $str == 'xııı' || $str == 'xıx' || $str == 'xx') {
         return 0;
-    }
- else {
-        return 1;    
+    } else {
+        return 1;
     }
 }
 
@@ -275,7 +294,7 @@ function vajaqconvert($str) {
     $str = str_replace('Ð', 'R', $str);
     $str = str_replace('Ñ', 'S', $str);
     $str = str_replace('Ò', 'T', $str);
-    $str = str_replace('Â', 'V', $str);  
+    $str = str_replace('Â', 'V', $str);
     $str = str_replace('Ó', 'U', $str);
     $str = str_replace('Õ', 'X', $str);
     $str = str_replace('É', 'Y', $str);
@@ -286,7 +305,7 @@ function vajaqconvert($str) {
     $str = str_replace('Ö', 'Ü', $str);
     $str = str_replace('Þ', 'Ö', $str);
     $str = str_replace('Ç', 'Z', $str);
-    $str = str_replace('×', 'Ç', $str);    
+    $str = str_replace('×', 'Ç', $str);
     $str = str_replace('à', 'a', $str);
     $str = str_replace('á', 'b', $str);
     $str = str_replace('ú', 'c', $str);
@@ -304,39 +323,37 @@ function vajaqconvert($str) {
     $str = str_replace('î', 'o', $str);
     $str = str_replace('ï', 'p', $str);
     $str = str_replace('ã', 'q', $str);
-    $str = str_replace('ð', 'r', $str); 
+    $str = str_replace('ð', 'r', $str);
     $str = str_replace('ñ', 's', $str);
     $str = str_replace('ò', 't', $str);
     $str = str_replace('â', 'v', $str);
     $str = str_replace('ó', 'u', $str);
     $str = str_replace('õ', 'x', $str);
-    $str = str_replace('é', 'y', $str); 
+    $str = str_replace('é', 'y', $str);
     $str = str_replace('ÿ', 'ə', $str);
-    $str = str_replace('ü', 'ğ', $str); 
-    $str = str_replace('ç', 'z', $str); 
+    $str = str_replace('ü', 'ğ', $str);
+    $str = str_replace('ç', 'z', $str);
     $str = str_replace('ö', 'ü', $str);
-    $str = str_replace('ø', 'ş', $str);  
-    $str = str_replace('÷', 'ç', $str);  
-    $str = str_replace('û', 'ı', $str);  
+    $str = str_replace('ø', 'ş', $str);
+    $str = str_replace('÷', 'ç', $str);
+    $str = str_replace('û', 'ı', $str);
     $str = str_replace('þ', 'ö', $str);
-       
+
     return $str;
 }
 
 function isarabicword($str) {
-    if (mb_strpos($str, 'آ') !== FALSE || mb_stripos($str, 'ا') !== FALSE || mb_stripos($str, 'ی') !== FALSE || mb_stripos($str, 'و') !== FALSE || mb_stripos($str, 'ب') !== FALSE || mb_stripos($str, 'ه') !== FALSE || mb_stripos($str, 'ئ') !== FALSE || mb_stripos($str, 'ک') !== FALSE || mb_stripos($str, '۱') !== FALSE){
+    if (mb_strpos($str, 'آ') !== FALSE || mb_stripos($str, 'ا') !== FALSE || mb_stripos($str, 'ی') !== FALSE || mb_stripos($str, 'و') !== FALSE || mb_stripos($str, 'ب') !== FALSE || mb_stripos($str, 'ه') !== FALSE || mb_stripos($str, 'ئ') !== FALSE || mb_stripos($str, 'ک') !== FALSE || mb_stripos($str, '۱') !== FALSE) {
         return 1;
-    }
- else {
-        return 0;    
+    } else {
+        return 0;
     }
 }
 
 function ispronun($str) {
-    if (mb_strpos($str, ']') !== FALSE){
+    if (mb_strpos($str, ']') !== FALSE) {
         return 1;
-    }
- else {
-        return 0;    
+    } else {
+        return 0;
     }
 }
