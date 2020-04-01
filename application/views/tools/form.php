@@ -3,7 +3,7 @@
 <?php echo validation_errors(); 
 echo form_open('','id="form1"');
 ?>
-    <textarea style="font-size: 16px; width: 90%; height: 300px;" placeholder="text in latin" name="latin" maxlength="5000"><?php echo $memo1; ?></textarea><br><br>
+    <textarea style="font-size: 16px; width: 90%; height: 300px;" placeholder="text in latin max 5000 characters" name="latin" maxlength="5000"><?php echo $memo1; ?></textarea><br><br>
 </form>
 <button onclick="submitform()">convert</button> &nbsp;&nbsp;&nbsp;
 <?php

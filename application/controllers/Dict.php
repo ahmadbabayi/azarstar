@@ -164,13 +164,35 @@ class Dict extends CI_Controller {
     }
     
     public function soz() {
+        $this->load->helper('str_helper');
+        $this->load->model('tools_model');
+        $wordslist = $this->tools_model->get_words_list();
+        mb_internal_encoding("utf-8");
+        
         $id = intval($this->uri->segment(3, 0));
         $row = $this->dict_model->show_word($id);
         $data['row'] = $row;
         $data['next'] = $this->dict_model->show_next_word($id, $row['dict_id']);
         $data['pre'] = $this->dict_model->show_pre_word($id, $row['dict_id']);
 
-
+        $memo2 = $row['body'];
+        $memo2 = trim($memo2);
+        $memo2 = firstconvert($memo2);
+        $memo2 = strip_tags($memo2);
+        $memo2 = mb_strtolower($memo2);
+        $memolist = preg_split('/[\s]+/', $memo2);
+        for ($i = 0; $i < count($memolist); $i++) {
+            if (convertableword($memolist[$i])) {
+                $memolist[$i] = firstwordconvert($memolist[$i], $wordslist);
+                $memolist[$i] = firstcharacter($memolist[$i]);
+                $memolist[$i] = middleconvert($memolist[$i]);
+                $memolist[$i] = strreplace($memolist[$i]);
+            }
+        }
+        $memo2 = implode(' ', $memolist);
+        $memo2 = lastconvert($memo2);
+        $data['memo2'] = $memo2;
+        
         $this->load->view('header');
         if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) {
             $this->load->view('dict/member/entry_edit', $data);

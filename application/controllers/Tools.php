@@ -42,6 +42,7 @@ class Tools extends CI_Controller {
             if (convertableword($memolist[$i])) {
                 $memolist[$i] = firstwordconvert($memolist[$i], $wordslist);
                 $memolist[$i] = firstcharacter($memolist[$i]);
+                $memolist[$i] = middleconvert($memolist[$i]);
                 $memolist[$i] = strreplace($memolist[$i]);
             }
         }

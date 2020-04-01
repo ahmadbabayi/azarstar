@@ -7,6 +7,7 @@ class Tools_model extends CI_Model {
     }
 
     public function get_words_list() {
+        $this->db->order_by('latin', 'DESC');
         $query = $this->db->get('convert_words');
         return $query->result_array();
     }

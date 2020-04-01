@@ -9,5 +9,11 @@
         <div class="w3-bar" style="direction: <?php echo substr($row['direction'], 4); ?>;">
             <?php echo $row['body']; ?>
         </div>
+        <?php if(substr($row['direction'], 4) != 'rtl') { ?>
+        <br>
+        <div class="w3-bar" style="direction: rtl">
+            <?php echo $memo2; ?>
+        </div>
+        <?php } ?>
     </div>
 </div>
