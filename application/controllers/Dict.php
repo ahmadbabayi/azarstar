@@ -153,10 +153,7 @@ class Dict extends CI_Controller {
         } else {
             $data['dict_id'] = $dict_id;
             if ($char != '') {
-                $dict_title = $this->dict_model->show_dict($dict_id);
-                $data['dict_title'] = $dict_title['title'];
-                $data['items'] = $this->dict_model->search_records($char, $dict_id);
-                $this->load->view('dict/search', $data);
+                redirect('dict/char/' . $dict_id . '/' . $char, 'location');
             }
         }
 
@@ -184,7 +181,7 @@ class Dict extends CI_Controller {
         for ($i = 0; $i < count($memolist); $i++) {
             if (convertableword($memolist[$i])) {
                 $memolist[$i] = firstwordconvert($memolist[$i], $wordslist);
-                $memolist[$i] = firstcharacter($memolist[$i]);
+                $memolist[$i] = prefix($memolist[$i]);
                 $memolist[$i] = middleconvert($memolist[$i]);
                 $memolist[$i] = strreplace($memolist[$i]);
             }

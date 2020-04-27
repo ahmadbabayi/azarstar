@@ -49,6 +49,17 @@ class Temrin extends CI_Controller {
             // $this->db->query('UPDATE `mywords` SET `m`="'.$str.'" WHERE id = '.$id);
         }
     }
+    
+    public function showtable() {
+        //$this->phonetic->transcribe( 'word' );
+        //transcribe( 'word' );
+        $row = $this->temrin_model->show_table();
+        foreach ($row as $value) {
+            $latin = $value['latin'];
+            $latin = str_replace('\'', '`', $latin);
+            echo '[\''.$latin . '\',\''.$value['arab'].'\'],';
+        }
+    }
 
     public function body() {
         $row = $this->temrin_model->show_bodies();
@@ -187,7 +198,7 @@ window.onload = timedRefresh(3000);
             for ($i = 0; $i < count($memolist); $i++) {
                 if (convertableword($memolist[$i])) {
                     $memolist[$i] = firstwordconvert($memolist[$i], $wordslist);
-                    $memolist[$i] = firstcharacter($memolist[$i]);
+                    $memolist[$i] = prefix($memolist[$i]);
                     $memolist[$i] = middleconvert($memolist[$i]);
                     $memolist[$i] = strreplace($memolist[$i]);
                 }

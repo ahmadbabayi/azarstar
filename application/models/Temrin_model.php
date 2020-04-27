@@ -35,6 +35,12 @@ class Temrin_model extends CI_Model {
         return $query->result_array();
     }
     
+    public function show_table() {
+        $this->db->order_by('latin','DESC');
+        $query = $this->db->get('convert_words');
+        return $query->result_array();
+    }
+    
     public function show_my_word($word) {
         $this->db->select('*');
         $this->db->from('mywords');
