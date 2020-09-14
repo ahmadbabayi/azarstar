@@ -58,6 +58,7 @@ class Temrin extends CI_Controller {
             $latin = $value['latin'];
             $latin = str_replace('\'', '`', $latin);
             echo '[\''.$latin . '\',\''.$value['arab'].'\'],';
+            //echo $latin.'<br>';
         }
     }
 
@@ -209,6 +210,19 @@ window.onload = timedRefresh(3000);
             $w = addslashes($value['word']);
             $p = addslashes($value['pronun']);
             $this->db->query("INSERT INTO `mywords`(`w`, `m`, `p`) VALUES ('$w','$memo2','$p')");
+        }
+    }
+    
+    public function showtxt() {
+        $this->load->helper('str_helper');
+        $dict_id = intval($this->uri->segment(3, 0));
+        if ($dict_id == '') {
+            redirect('temrin', 'location');
+        }
+        $word = $this->temrin_model->fetch_records($dict_id);
+        ini_set('max_execution_time', 300);
+        foreach ($word as $value) {
+            echo $value['word'].' -@- '.$value['body'].'<br>';
         }
     }
 
